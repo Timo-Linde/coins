@@ -1,0 +1,35 @@
+#
+# Ergebnisdateien, Protokolle, Temporäres
+#
+/target/
+/logs/
+*~
+
+#
+# Leiningen
+#
+/.lein-plugins/
+/.lein-repl-history
+/.lein-deps-sum
+/.lein-failures
+
+#
+# REPL
+#
+/.repl
+/.nrepl-port
+
+#
+# IntelliJ
+#
+/.idea
+
+#
+# MacOS
+#
+.DS_Store
+
+#
+# clj-kondo
+#
+/.clj-kondo/
