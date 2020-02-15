@@ -1,25 +1,25 @@
 (ns coins.html.coins
   (:require [coins.reader :as reader]
-            [clojure.pprint :as pprint])
-  )
+            [clojure.pprint :as pprint]
+            [common.converter :as converter]
+            [common.formatter :as formatter]))
 
 (defn coin->html
   [{:keys [euro-currency-rate] :as _conf} index {:keys [name material ratingColor value amount amountValue] :as coin}]
-  (pprint/pprint coin)
   [:tr
    [:th {:scope "row"} (inc index)]
    [:td name]
    [:td material]
-   [(str "td.bg-" ratingColor) {:style (str "background-color: " ratingColor)}]
-   [:td (format "%.3f oz" (with-precision 3 :rounding CEILING (reader/coin-weight-in-oz coin)))]
+   [:td
+    {:class (str "bg-" ratingColor)
+     :style (str "background-color: " ratingColor)}]
+   [:td (formatter/format-oz (reader/coin-weight-in-oz coin))]
    [:td amount]
-   [:td (format "%.2f€" (with-precision 2 :rounding CEILING (reader/usd->euro euro-currency-rate value)))]
-   [:td (format "%.2f€" (with-precision 2 :rounding CEILING (reader/usd->euro euro-currency-rate amountValue)))]]
-  )
+   [:td (formatter/format-euro (converter/usd->euro euro-currency-rate value))]
+   [:td (formatter/format-euro (converter/usd->euro euro-currency-rate amountValue))]])
 
 (defn coins->html
   [{:keys [coins] :as conf}]
-  (pprint/pprint coins)
   [:table.table.table-dark
    [:thead
     [:tr
@@ -40,11 +40,9 @@
   (list [:div.text-left
           [:span "1€ = " euro-currency-rate "$"]
           [:br]
-          [:span "Gold Preis: " (format "%.2f€" (with-precision 2 :rounding CEILING (reader/usd->euro euro-currency-rate gold-price))) " / " gold-price "$"]
+          [:span "Gold Preis: " (formatter/format-euro (converter/usd->euro euro-currency-rate gold-price)) " / " gold-price "$"]
           [:br]
-          [:span "Silber Preis: " (format "%.2f€" (with-precision 2 :rounding CEILING (reader/usd->euro euro-currency-rate silver-price))) " / " silver-price "$"]
+          [:span "Silber Preis: " (formatter/format-euro (converter/usd->euro euro-currency-rate silver-price)) " / " silver-price "$"]
           ]
          [:br]
-         (coins->html conf)
-         )
-  )
+         (coins->html conf)))

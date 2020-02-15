@@ -20,16 +20,14 @@
      :rel "stylesheet"
      :href "https://getbootstrap.com/docs/4.3/dist/css/bootstrap.min.css"}]
    [:link {:rel "stylesheet", :href "https://getbootstrap.com/docs/4.3/examples/cover/cover.css"}]
-   [:style ".cover-container {max-width: 80em;}"]]
-  )
+   [:style ".cover-container {max-width: 80em;}"]])
 
 (defn nav
   []
   [:nav.nav.nav-masthead.justify-content-center.d-none
    [:a.nav-link.active {:href "#"} "Home"]
    [:a.nav-link {:href "#"} "Features"]
-   [:a.nav-link {:href "#"} "Contact"]]
-  )
+   [:a.nav-link {:href "#"} "Contact"]])
 
 (defn footer
   []
@@ -40,8 +38,7 @@
      [:a {:href "https://getbootstrap.com/"} "Bootstrap"]
      ", von "
      [:a {:href "https://timo-linde.de"} "Timo Linde"]
-     "."]]]
-  )
+     "."]]])
 
 (defn application
   [title content]
@@ -61,5 +58,4 @@
              [:p.lead [:a.btn.btn-lg.btn-secondary.d-none {:href "#"} "Button"]
               content]]
             (footer)
-            ]])
-  )
+            ]]))

@@ -1,0 +1,13 @@
+{
+  "coins": [
+    {
+      "name": "Münze-1",
+      "material": "Gold",
+      "rating": 5,
+      "amount": 3,
+      "purity": 900,
+      "weight": 30,
+      "weightType": "g"
+    }
+  ]
+}

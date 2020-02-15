@@ -9,5 +9,5 @@
   "This is our app's entry point"
   [& args]
   (let [port 1337]
-    (server/run-server #'coins-handler/new-handler {:port port})
+    (server/run-server #'coins-handler/handler {:port port})
     (println (str "Running webserver at http:/127.0.0.1:" port "/"))))
